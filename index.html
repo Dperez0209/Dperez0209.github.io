@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Daniel Pérez · Portafolio</title>
+<meta name="description" content="Daniel Pérez: desarrollo de herramientas internas para logística desde 2007 (VBA, SQL Server, C#, PHP, Python). Busca prácticas en desarrollo.">
+<link rel="icon" href="foto-perfil.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #f7f7f5;
+    --surface: #ffffff;
+    --text: #1c1e21;
+    --muted: #5d6470;
+    --line: #e3e4e0;
+    --accent: #1f6feb;
+    --accent-soft: #e6effd;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #0f1216;
+      --surface: #171b21;
+      --text: #e8eaed;
+      --muted: #9aa3ae;
+      --line: #262c34;
+      --accent: #58a6ff;
+      --accent-soft: #15243a;
+    }
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: "Inter", system-ui, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+    font-size: 17px;
+  }
+  .wrap { max-width: 860px; margin: 0 auto; padding: 0 20px; }
+  a { color: var(--accent); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+
+  nav {
+    position: sticky; top: 0; z-index: 10;
+    background: color-mix(in srgb, var(--bg) 88%, transparent);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--line);
+  }
+  nav .wrap { display: flex; justify-content: space-between; align-items: center; height: 56px; }
+  nav .logo { font-family: "JetBrains Mono", monospace; font-weight: 500; color: var(--text); }
+  nav ul { display: flex; gap: 22px; list-style: none; font-size: 15px; }
+  nav ul a { color: var(--muted); }
+  nav ul a:hover { color: var(--text); text-decoration: none; }
+
+  header { padding: 72px 0 56px; }
+  .hero { display: flex; gap: 36px; align-items: center; }
+  .hero img {
+    width: 150px; height: 150px; border-radius: 50%;
+    object-fit: cover; border: 3px solid var(--surface);
+    box-shadow: 0 4px 20px rgba(0,0,0,.08); flex-shrink: 0;
+  }
+  .tag {
+    display: inline-block; font-family: "JetBrains Mono", monospace; font-size: 13px;
+    color: var(--accent); background: var(--accent-soft);
+    padding: 4px 10px; border-radius: 999px; margin-bottom: 14px;
+  }
+  h1 { font-size: 44px; line-height: 1.1; letter-spacing: -0.02em; margin-bottom: 10px; }
+  .lead { color: var(--muted); font-size: 19px; max-width: 560px; }
+  .cta { display: flex; gap: 12px; margin-top: 24px; flex-wrap: wrap; }
+  .btn {
+    display: inline-block; padding: 10px 18px; border-radius: 8px; font-weight: 600; font-size: 15px;
+    border: 1px solid var(--line); color: var(--text); background: var(--surface);
+  }
+  .btn.primary { background: var(--accent); border-color: var(--accent); color: #fff; }
+  .btn:hover { text-decoration: none; filter: brightness(1.05); }
+
+  section { padding: 48px 0; border-top: 1px solid var(--line); }
+  h2 {
+    font-size: 14px; text-transform: uppercase; letter-spacing: .08em;
+    color: var(--muted); margin-bottom: 24px; font-weight: 600;
+  }
+  .about p + p { margin-top: 14px; }
+
+
+  .grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
+  .card {
+    background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 22px;
+  }
+  .card h3 { font-size: 18px; margin-bottom: 8px; }
+  .card p { color: var(--muted); font-size: 15px; }
+  .chips { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 14px; }
+  .chip {
+    font-family: "JetBrains Mono", monospace; font-size: 12px;
+    padding: 3px 8px; border-radius: 6px; background: var(--accent-soft); color: var(--accent);
+  }
+  .card.featured { margin-bottom: 16px; border-color: var(--accent); }
+  .grid .card:last-child:nth-child(odd) { grid-column: 1 / -1; }
+  .status {
+    display: inline-block; font-size: 12px; font-weight: 600; color: var(--muted);
+    text-transform: uppercase; letter-spacing: .06em; margin-bottom: 6px;
+  }
+  .card.featured .status { color: var(--accent); }
+  .more { display: inline-block; margin-top: 14px; font-weight: 600; font-size: 15px; }
+  .note { margin-top: 18px; font-size: 14px; color: var(--muted); }
+
+
+  .skills { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
+  .skills h3 { font-size: 15px; margin-bottom: 8px; }
+
+  .contact { text-align: center; }
+  .contact p { color: var(--muted); max-width: 520px; margin: 0 auto 22px; }
+  .contact .cta { justify-content: center; }
+  footer { padding: 32px 0; text-align: center; color: var(--muted); font-size: 13px; border-top: 1px solid var(--line); }
+
+  @media (max-width: 680px) {
+    nav ul { display: none; }
+    header { padding: 48px 0 40px; }
+    .hero { flex-direction: column; align-items: flex-start; gap: 22px; }
+    .hero img { width: 110px; height: 110px; }
+    h1 { font-size: 34px; }
+    .grid, .skills { grid-template-columns: 1fr; }
+    .stats { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <span class="logo">dperez0209</span>
+    <ul>
+      <li><a href="#sobre-mi">Sobre mí</a></li>
+      <li><a href="#proyectos">Proyectos</a></li>
+      <li><a href="#habilidades">Tecnologías</a></li>
+      <li><a href="#contacto">Contacto</a></li>
+    </ul>
+  </div>
+</nav>
+
+<header>
+  <div class="wrap hero">
+    <img src="foto-perfil.jpg" alt="Foto de Daniel Pérez">
+    <div>
+      <span class="tag">Disponible para prácticas</span>
+      <h1>Daniel Pérez</h1>
+      <p class="lead">Programo desde 2007. VBA y SQL Server son mi día a día, y también trabajo con C#, PHP y Python. Este año he terminado el curso de Python de Tokio School y busco prácticas en un equipo de desarrollo.</p>
+      <div class="cta">
+        <a class="btn primary" href="mailto:pereznavarrodaniel@gmail.com">Contactar</a>
+        <a class="btn" href="https://github.com/Dperez0209">GitHub</a>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main>
+  <section id="sobre-mi">
+    <div class="wrap about">
+      <h2>Sobre mí</h2>
+      <p>Llevo programando desde 2007. Empecé casi por necesidad: hacía falta una herramienta para ubicar los productos del almacén y acabé haciéndola yo en Access. Desde entonces no he parado. Hoy soy el responsable de IT de la empresa y el único perfil técnico, así que me toca un poco de todo: desarrollo, sistemas, redes, soporte a los compañeros y a los clientes que usan mis aplicaciones, y el mantenimiento de equipos y servidores.</p>
+      <p>Este año he terminado el curso de Programación en Python de Tokio School, con el proyecto final aprobado. Ahora busco prácticas en un equipo de desarrollo: quiero trabajar con más gente, ver cómo se hacen las cosas en otros sitios y seguir aprendiendo.</p>
+    </div>
+  </section>
+
+  <section id="proyectos">
+    <div class="wrap">
+      <h2>Proyectos</h2>
+      <div class="card featured">
+        <span class="status">Código disponible</span>
+        <h3>ERP de suministros informáticos</h3>
+        <p>Mi proyecto final del curso de Tokio School. Una aplicación web para gestionar productos, proveedores y usuarios con roles, que avisa cuando un producto baja de su stock mínimo. Es el único proyecto con el código a la vista; el resto pertenece a la empresa.</p>
+        <div class="chips"><span class="chip">Python</span><span class="chip">Flask</span><span class="chip">SQLAlchemy</span><span class="chip">MySQL</span><span class="chip">pandas</span></div>
+        <a class="more" href="https://github.com/Dperez0209/erp-suministros-flask">Ver código en GitHub →</a>
+      </div>
+      <div class="grid">
+        <div class="card">
+          <span class="status">En desarrollo</span>
+          <h3>Servicio de facturación VeriFactu</h3>
+          <p>Con VeriFactu, las facturas tienen que llegar a Hacienda, y las nuestras salen de un ERP en Access 97 que no se puede rehacer de un día para otro. Así que he montado un servicio de Windows con cola que las lleva hasta la AEAT: Access → servicio Windows → Odoo → VeriFactu → AEAT. Por el camino respeta la numeración correlativa de cada serie y recoge la respuesta de Hacienda. Es el proyecto del que más orgulloso estoy, y el que más capas tiene.</p>
+          <div class="chips"><span class="chip">C#</span><span class="chip">.NET</span><span class="chip">Odoo 18</span><span class="chip">XML-RPC</span><span class="chip">Arquitectura por capas</span></div>
+        </div>
+        <div class="card">
+          <span class="status">Desde enero de 2026 · En pausa</span>
+          <h3>Implantación de Odoo 18</h3>
+          <p>Empecé llevando la implantación como responsable interno del proyecto y enlace técnico con el proveedor externo. Por el camino, la empresa decidió hacer el desarrollo internamente y me tocó a mí, aprendiendo sobre la marcha. Hasta ahora he hecho la personalización de contactos (res.partner) y productos (product.template) con herencia de modelos y vistas, y había empezado con los permisos de los usuarios del portal web. Está en pausa hasta terminar VeriFactu, que ahora es la prioridad.</p>
+          <div class="chips"><span class="chip">Python</span><span class="chip">Odoo 18</span><span class="chip">XML</span><span class="chip">Herencia</span></div>
+        </div>
+        <div class="card">
+          <span class="status">En producción desde marzo de 2026</span>
+          <h3>Integración de expediciones con la central de transporte</h3>
+          <p>Una aplicación de escritorio conectada al web service de la red de transporte. Permite grabar expediciones a mano, arrastrando y soltando o con una importación automática cada cierto tiempo, en directo o en diferido, y también eliminarlas, reetiquetarlas y seguir su trazabilidad. Está hecha por capas, es multihilo y tiene su propio sistema de actualizaciones. Funciona desde marzo de 2026 en dos equipos de la empresa y en dos clientes (cinco puestos en total), y tengo dos clientes más confirmados.</p>
+          <div class="chips"><span class="chip">C#</span><span class="chip">.NET</span><span class="chip">Web service</span><span class="chip">Multihilo</span></div>
+        </div>
+        <div class="card">
+          <span class="status">En producción</span>
+          <h3>API de integración de pedidos</h3>
+          <p>Por aquí entran los pedidos: los que manda por cola el ERP de un cliente y los del portal B2B de la empresa. La API valida los datos, controla el stock, calcula el coste del envío, guarda el pedido en nuestra base de datos y avisa a las PDAs del almacén con una notificación. Funciona cada día. Creció a medida que hacía falta, y si la hiciera hoy la organizaría de otra forma.</p>
+          <div class="chips"><span class="chip">PHP</span><span class="chip">SQL Server</span><span class="chip">MySQL</span><span class="chip">Firebase</span></div>
+        </div>
+        <div class="card">
+          <span class="status">En producción</span>
+          <h3>App de almacén para PDAs</h3>
+          <p>La aplicación que usan los operarios en las PDAs para las salidas de mercancía: stock, ubicaciones, etiquetas y tracking. La hice yo solo, a base de buscar y probar, y sigue en producción.</p>
+          <div class="chips"><span class="chip">C#</span><span class="chip">Xamarin.Forms</span><span class="chip">SQL Server</span></div>
+        </div>
+        <div class="card">
+          <span class="status">En curso</span>
+          <h3>Mantenimiento y migración de sistemas heredados</h3>
+          <p>También mantengo código que no escribí yo. El ERP de facturación del anterior informático, en Access 97: me he leído su código (genera las series de facturas a partir de las líneas de pedido) y lo estoy pasando a Access actual con SQL Server. Las tablas de facturas ya están en tablas espejo en SQL Server, que es de donde tira el servicio de VeriFactu. Y el portal B2B, en PHP 5.6, del que estoy haciendo la versión nueva en PHP 8, esta vez bien estructurada.</p>
+          <div class="chips"><span class="chip">Access 97</span><span class="chip">VBA</span><span class="chip">SQL Server</span><span class="chip">PHP 5.6 → 8</span></div>
+        </div>
+        <div class="card">
+          <span class="status">Desde 2007</span>
+          <h3>Sistema de almacén y orquestación</h3>
+          <p>Por aquí empezó todo, en 2007. Empecé haciendo una herramienta para ubicar productos y, con el tiempo, fue creciendo: control de stock, ubicaciones, validación de pedidos, importaciones e integración con el portal mediante ODBC y MySQL. Hoy es el motor logístico de la empresa y sigue evolucionando: también calcula los costes que se facturan de los pedidos que entran por la API. En 2025 le añadí la importación de pedidos por OCR para la empresa de transporte, con scripts en Python integrados con la central, que quitan mucho trabajo manual. Ahora estoy validando un motor nuevo para las tarifas de transporte.</p>
+          <div class="chips"><span class="chip">Access</span><span class="chip">VBA</span><span class="chip">SQL Server</span><span class="chip">Python</span><span class="chip">OCR</span></div>
+        </div>
+      </div>
+      <p class="note">El código de los proyectos de la empresa no es público, pero cualquiera de ellos lo puedo explicar con detalle en una entrevista.</p>
+    </div>
+  </section>
+
+  <section id="habilidades">
+    <div class="wrap">
+      <h2>Tecnologías</h2>
+      <div class="skills">
+        <div>
+          <h3>Principal</h3>
+          <div class="chips"><span class="chip">VBA</span><span class="chip">Access</span><span class="chip">SQL Server</span><span class="chip">SQL</span></div>
+        </div>
+        <div>
+          <h3>Uso habitual</h3>
+          <div class="chips"><span class="chip">C#</span><span class="chip">.NET</span><span class="chip">PHP</span><span class="chip">Python</span></div>
+        </div>
+        <div>
+          <h3>En proyectos concretos</h3>
+          <div class="chips"><span class="chip">Xamarin.Forms</span><span class="chip">Flask</span><span class="chip">Odoo</span><span class="chip">Firebase</span><span class="chip">Docker</span></div>
+        </div>
+        <div>
+          <h3>Herramientas</h3>
+          <div class="chips"><span class="chip">Git</span><span class="chip">APIs REST</span><span class="chip">XML-RPC</span><span class="chip">IA (Copilot, Claude)</span><span class="chip">Visual Studio Code</span><span class="chip">Visual Studio 2026</span></div>
+        </div>
+      </div>
+      <p class="note">Formación: Programación en Python · Tokio School (2026) · completado, proyecto final aprobado</p>
+    </div>
+  </section>
+
+  <section id="contacto">
+    <div class="wrap contact">
+      <h2>Contacto</h2>
+      <p>Busco prácticas en desarrollo, en la zona de Barcelona o en remoto. Si crees que puedo encajar en tu equipo, escríbeme.</p>
+      <div class="cta">
+        <a class="btn primary" href="mailto:pereznavarrodaniel@gmail.com">pereznavarrodaniel@gmail.com</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>© 2026 Daniel Pérez · Mollet del Vallès</footer>
+
+</body>
+</html>
